@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "helicarrier-mcp"
+version = "0.1.0"
+description = "Helicarrier MCP Server — Claude Code integration for fleet ops"
+authors = ["Mission-DiA"]
+packages = [{include = "helicarrier_mcp"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mcp = ">=1.26.0"
+httpx = "^0.27.0"
+google-cloud-secret-manager = "^2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
