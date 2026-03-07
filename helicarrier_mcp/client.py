@@ -26,3 +26,9 @@ class HelicarrierClient:
         response = await client.get(path, params=params or None)
         response.raise_for_status()
         return response.json()
+
+    async def post(self, path: str, data: Optional[dict[str, Any]] = None) -> dict:
+        client = await self._get_client()
+        response = await client.post(path, json=data or {})
+        response.raise_for_status()
+        return response.json()
