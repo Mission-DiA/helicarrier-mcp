@@ -1,5 +1,4 @@
 import json
-from typing import Optional
 
 from mcp.server.fastmcp import FastMCP
 
@@ -22,8 +21,8 @@ def _json(data: dict) -> str:
 async def fleet_list_apps(
     page: int = 1,
     page_size: int = 50,
-    search: Optional[str] = None,
-    status: Optional[str] = None,
+    search: str | None = None,
+    status: str | None = None,
 ) -> str:
     """List all apps in the Helicarrier fleet.
 
@@ -75,10 +74,10 @@ async def fleet_app_detail(app_id: str) -> str:
 
 @mcp.tool()
 async def build_status(
-    app_id: Optional[str] = None,
-    repo_name: Optional[str] = None,
-    status: Optional[str] = None,
-    branch: Optional[str] = None,
+    app_id: str | None = None,
+    repo_name: str | None = None,
+    status: str | None = None,
+    branch: str | None = None,
     page: int = 1,
     page_size: int = 20,
 ) -> str:
@@ -141,10 +140,10 @@ async def aegis_summary() -> str:
 
 @mcp.tool()
 async def aegis_list_incidents(
-    status: Optional[str] = None,
-    app_id: Optional[str] = None,
-    env: Optional[str] = None,
-    severity: Optional[str] = None,
+    status: str | None = None,
+    app_id: str | None = None,
+    env: str | None = None,
+    severity: str | None = None,
     page: int = 1,
     page_size: int = 20,
 ) -> str:
@@ -186,9 +185,9 @@ async def aegis_incident_detail(incident_id: str) -> str:
 
 @mcp.tool()
 async def aegis_list_actions(
-    status: Optional[str] = None,
-    tier: Optional[str] = None,
-    app_id: Optional[str] = None,
+    status: str | None = None,
+    tier: str | None = None,
+    app_id: str | None = None,
     page: int = 1,
     page_size: int = 20,
 ) -> str:
@@ -214,7 +213,7 @@ async def aegis_list_actions(
 
 
 @mcp.tool()
-async def aegis_approve_action(action_id: str, reason: Optional[str] = None) -> str:
+async def aegis_approve_action(action_id: str, reason: str | None = None) -> str:
     """Approve a pending T2 AEGIS action (Director approval).
 
     T2 actions are high-risk operations like rollback, promote, or escalate.
@@ -231,7 +230,7 @@ async def aegis_approve_action(action_id: str, reason: Optional[str] = None) -> 
 
 
 @mcp.tool()
-async def aegis_reject_action(action_id: str, reason: Optional[str] = None) -> str:
+async def aegis_reject_action(action_id: str, reason: str | None = None) -> str:
     """Reject a pending T2 AEGIS action.
 
     Provide a reason for the rejection. Only pending actions can be rejected.
@@ -248,7 +247,7 @@ async def aegis_reject_action(action_id: str, reason: Optional[str] = None) -> s
 
 @mcp.tool()
 async def aegis_list_scans(
-    app_id: Optional[str] = None,
+    app_id: str | None = None,
     limit: int = 20,
 ) -> str:
     """List AEGIS source code scan results.
@@ -268,8 +267,8 @@ async def aegis_list_scans(
 
 @mcp.tool()
 async def aegis_list_tests(
-    app_id: Optional[str] = None,
-    test_type: Optional[str] = None,
+    app_id: str | None = None,
+    test_type: str | None = None,
     limit: int = 20,
 ) -> str:
     """List AEGIS test results (smoke, contract, integration, walkthrough).
@@ -289,7 +288,7 @@ async def aegis_list_tests(
 
 @mcp.tool()
 async def aegis_list_fixes(
-    app_id: Optional[str] = None,
+    app_id: str | None = None,
     limit: int = 20,
 ) -> str:
     """List AEGIS fix reports (documented fixes applied by the engine).

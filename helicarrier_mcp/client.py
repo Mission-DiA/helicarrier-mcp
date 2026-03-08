@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 import httpx
 
@@ -7,7 +7,7 @@ class HelicarrierClient:
     def __init__(self, base_url: str, api_key: str) -> None:
         self._base_url = base_url.rstrip("/")
         self._api_key = api_key
-        self._client: Optional[httpx.AsyncClient] = None
+        self._client: httpx.AsyncClient | None = None
 
     async def _get_client(self) -> httpx.AsyncClient:
         if self._client is None:
@@ -18,7 +18,7 @@ class HelicarrierClient:
             )
         return self._client
 
-    async def get(self, path: str, params: Optional[dict[str, Any]] = None) -> dict:
+    async def get(self, path: str, params: dict[str, Any] | None = None) -> dict:
         client = await self._get_client()
         # Strip None values from params
         if params:
@@ -27,7 +27,7 @@ class HelicarrierClient:
         response.raise_for_status()
         return response.json()
 
-    async def post(self, path: str, data: Optional[dict[str, Any]] = None) -> dict:
+    async def post(self, path: str, data: dict[str, Any] | None = None) -> dict:
         client = await self._get_client()
         response = await client.post(path, json=data or {})
         response.raise_for_status()
