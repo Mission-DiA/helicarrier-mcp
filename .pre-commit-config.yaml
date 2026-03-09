@@ -1,0 +1,33 @@
+# Pre-commit hooks for helicarrier-mcp
+# Install: pip install pre-commit && pre-commit install
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: Ruff linter
+        entry: poetry run ruff check
+        language: system
+        types: [python]
+
+      - id: mypy
+        name: Mypy type check
+        entry: poetry run mypy helicarrier_mcp/
+        language: system
+        pass_filenames: false
+        types: [python]
+
+      - id: bandit
+        name: Bandit security scan
+        entry: poetry run bandit -ll
+        language: system
+        types: [python]
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks

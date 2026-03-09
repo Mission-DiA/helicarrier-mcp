@@ -1,0 +1,16 @@
+# Gitleaks configuration for helicarrier-mcp
+# https://github.com/gitleaks/gitleaks
+
+title = "Helicarrier MCP Gitleaks Config"
+
+[allowlist]
+  description = "Known safe patterns"
+  paths = [
+    '''tests/.*''',
+    '''.*\.lock$''',
+    '''.*\.xml$''',
+    '''package\.json$''',
+    '''package-lock\.json$''',
+    '''tsconfig.*\.json$''',
+    '''.*-report\.json$''',
+  ]
